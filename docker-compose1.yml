@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./localstack:/var/lib/localstack
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"

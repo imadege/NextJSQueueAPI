@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  # NestJS API Service
+  nestjs-api:
+    build: .
+    depends_on:
+      - rabbitmq
+      - localstack  # Localstack for AWS SQS
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+
+  # RabbitMQ Service
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # RabbitMQ main port
+      - "15672:15672"  # RabbitMQ management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  # Localstack Service (for AWS SQS emulation)
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    environment:
+      - SERVICES=sqs
+      - DEFAULT_REGION=us-east-1
+    ports:
+      - "4566:4566"  # Localstack port
+volumes:
+  rabbitmq_data:
