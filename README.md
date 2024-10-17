@@ -1,5 +1,3 @@
-
-```markdown
 # NestJS Queue API
 
 ## Overview
@@ -13,20 +11,18 @@ This project is a **NestJS API** that provides queue management functionality wi
 - **Docker Compose** setup for running the API, RabbitMQ, and Localstack.
 - Unit tests for services and controllers using **Jest**.
 - Persistent message queues and error handling.
-
 ---
-
-## Requirements
+### Requirements
 
 - **Node.js** (>= 18.x)
 - **Docker** and **Docker Compose**
 - **AWS CLI** (optional, for testing SQS directly)
 
 ---
-
 ## Setup and Installation
 
 ### Step 1: Clone the Repository
+
 
 ```bash
 git clone https://github.com/your-username/nestjs-queue-api.git
